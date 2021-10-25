@@ -1,0 +1,92 @@
+//  program to understand the concept of the tree and the intialization  of the tree by the help of the structure ------------>>>>>>>>> 
+/*  
+                1      --------->>>>>>>>>>>> THIS is an example of the tree ----->>>>>>>>>>
+              /  \
+            2     3 
+
+          */
+
+          //  in tree we will have the root ----->>>>>> by which we will accss the data ------>>>>>>>>>>>
+          //  tree or root --->>>> can have maximum 2 left and 2 right leaves or branch ----->>>>>>>>>
+
+          //  tree -->>>>>  HAVE -->> ROOT , BRANCH AND THE LEAVES AS WE also know all of them already 
+          // now let's see the cod e---------->>>>>>>>>>>
+
+//  #include<iostream>
+//  using namespace std;
+//  struct tree{
+
+//    int data ;
+//    tree* left;
+//    tree* right;
+
+//    tree(int x){
+//    data = x ;
+//    right = NULL;
+//    left = NULL;
+//    }
+  
+ 
+
+//  };
+ 
+//  int main(){
+
+//  struct tree* root ;
+
+//   root = new tree(1);
+//   root->left = new tree(2);
+//   root->right = new tree(3);
+
+  
+//        struct tree* temp = root;
+
+//       cout<<temp->data<<endl;     
+//       cout<<temp->left->data<<endl;
+//        cout<<temp->right->data<<endl;
+  
+
+
+//  return 0;
+//   }      
+
+//    WE CAN ALSO USE STRUCTURE IN THIS  SIMILAR WAY TO THE CLASS ONLY AT THE PLACE OF CLASS ((( WE HAVE TO WRITE THE STRUCT KEYWORD ))))
+  
+ // LET SEE---------->>>>>>>
+
+ #include<iostream>
+ using namespace std;
+
+ struct tree{
+
+   int data ;
+   tree* left;
+   tree* right;
+
+   tree(int x){
+   data = x ;
+   right = NULL;
+   left = NULL;
+   }
+  
+ 
+
+ };
+ 
+ int main(){
+
+  tree* root ;
+
+  root = new tree(1);
+  root->left = new tree(2);
+  root->right = new tree(3); 
+        
+
+      cout<<root->data<<endl;     
+      cout<<root->left->data<<endl;
+       cout<<root->right->data<<endl;
+  
+
+
+ return 0;
+  }    
