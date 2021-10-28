@@ -1,0 +1,68 @@
+//   program to make a tree from the postorder and inorder --------->>>>>>>>>
+//  remind that we cannot  find a tree from the postorder and preorder becuse there will be a chnace of diffrent outcomes -->>>>>>
+//  let's see the code ------->>>>>>>>>>
+#include<iostream>
+using namespace std;
+struct Node{
+    int data ; 
+    Node* left ; 
+    Node*  right ;
+
+    Node(int x ){
+        data = x ; 
+        right = NULL;
+        left = NULL;
+    }
+};
+
+int search(int inorder[]  , int start , int end , int cur ){
+    for(int i =start;i<=end ; i++){
+        if(inorder[i] == cur){
+            return i ;
+        }
+    }
+    return -1 ; 
+}
+
+Node* buildtree(int postorder[] , int inorder[] , int start , int end ){
+
+   static  int idx = 4 ;
+   if(start>end){
+       return NULL ; 
+   }
+   int cur = postorder[idx];
+   idx--;
+  Node* node = new Node(cur);
+
+   if(start == end ){
+       return node;
+   }
+   
+   int pos = search(inorder , start , end , cur);
+  
+   node->right = buildtree(postorder , inorder , pos+1 , end);
+   node->left = buildtree(postorder , inorder , start , pos-1);
+   
+  
+  return node;
+
+}
+
+void printinorder( Node* root ){
+   if(root == NULL){
+       return ;
+   }
+    printinorder(root->left);
+    cout<<root->data<<" ";
+    printinorder(root->right);
+}
+
+int main(){
+int postorder[] = {4,2,5,3,1};
+int inorder[] = {4,2,1,5,3};
+
+   Node* root = buildtree(postorder , inorder , 0 , 4);-
+   printinorder(root);
+
+return 0;
+ }
