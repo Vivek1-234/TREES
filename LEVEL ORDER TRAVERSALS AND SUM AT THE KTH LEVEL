@@ -1,0 +1,80 @@
+//  program to travels-->>>>>  we will do this with the help of the queue ------->>>>>>>>
+//  we will print all the value of all the values -->>>> series wise ---->>
+//  And we will also see the how can we find the sum of any level values --------->>>>>>>>>
+//  Now the time let's see the code --->>>>>>>>>>   
+
+
+
+ #include"bits/stdc++.h"
+ using namespace std;
+
+ struct node{
+
+   int data ;
+   node* left;
+   node* right;
+
+   node(int x){
+   data = x ;
+   right = NULL;
+   left = NULL;
+
+   }
+
+ };
+
+ int  countnodes(node* root , int k ){
+   if(root==NULL){
+     return -1 ;
+   }
+   int level =0 ; 
+   int sum =0 ; 
+ queue<node*> q ;
+   q.push(root);
+   q.push(NULL);  
+
+   while(!q.empty()  ){
+      node* val = q.front();
+      q.pop();
+
+      if(val!=NULL){
+        if(level==k){            // 
+        sum = sum + val->data;     // if we want print all the nodes ----->>>>>>> then , cout<<val->data<<" ";   instead of 41 , 42 and 43 
+        }                                                         
+        if(val->left)
+        q.push(val->left);
+
+        if(val->right)
+        q.push(val->right);
+      }
+
+      else if (!q.empty()){
+        q.push(NULL);
+        level++;
+ }
+   } 
+   return sum ;    
+
+
+
+ }
+ 
+ 
+ int main(){
+
+  node* root ;
+
+  root = new node(1);
+  root->left = new node(2);
+  root->right = new node(3); 
+  root->left->left = new node(4); 
+  root->left->right = new node(5); 
+  root->right->left = new node(6); 
+  root->right->right = new node(7); 
+
+    cout<<countnodes(root , 2 );  
+
+      
+
+ return 0;
+  }    
