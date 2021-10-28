@@ -1,0 +1,58 @@
+//  program to count all the nodes in a binary tree -------->>>>>>>>
+
+//  now let' s see  the code of this program ------->>>>>>
+
+//  program to travels-->>>>>  we will do this with the help of the queue ------->>>>>>>>
+//  we will print all the value of all the values -->>>> series wise ---->>
+//  And we will also see the how can we find the sum of any level values --------->>>>>>>>>
+//  Now the time let's see the code --->>>>>>>>>>   
+
+
+
+ #include"bits/stdc++.h"
+ using namespace std;
+
+ struct node{
+
+   int data ;
+   node* left;
+   node* right;
+
+   node(int x){
+   data = x ;
+   right = NULL;
+   left = NULL;
+
+   }
+
+ };
+
+ int countnodes(node* root){
+   if(root==NULL){
+       return 0;
+   }  
+
+   return countnodes(root->left) + countnodes(root->right) + 1;
+    }
+
+
+ 
+ 
+ int main(){
+
+  node* root ;
+
+  root = new node(1);
+  root->left = new node(2);
+  root->right = new node(3); 
+  root->left->left = new node(4); 
+  root->left->right = new node(5); 
+  root->right->left = new node(6); 
+  root->right->right = new node(7); 
+
+    cout<<countnodes(root );  
+
+      
+
+ return 0;
+  }    
