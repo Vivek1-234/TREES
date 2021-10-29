@@ -1,0 +1,121 @@
+//   program to find height and the diameter of  a tree ----------->>>>>>>>>>>>>>>>>>
+//   1st ---->>>>>>>  height 
+//   2nd ----->>>>>>>  diameter of tree 
+
+ #include"bits/stdc++.h"
+ using namespace std;
+
+ struct node{
+
+   int data ;
+   node* left;
+   node* right;
+
+   node(int x){
+   data = x ;
+   right = NULL;
+   left = NULL;
+
+   }
+
+ };
+ 
+ //   1st ----->>>>>>>>>> Height of a tree ----->>>>>>>>>>>>
+
+
+
+
+//  int calcheight(node* root){
+
+//  if(root== NULL){
+//      return 0 ; 
+//  }
+
+//  int lheight = calcheight(root->left);
+//  int rheight = calcheight(root->right);
+
+//   return max(lheight , rheight + 1 );
+ 
+//  }
+
+
+
+
+
+//  2nd ----->>>>>>>   Diameter of a tree ---->>>>>>>>>>>>>
+//  this gives time complexity will be -->>>>>>>>>>>>  o(n2)
+
+//  int calcheight(node* root){
+
+//  if(root== NULL){
+//      return 0 ; 
+//  }
+
+//  int lheight = calcheight(root->left);
+//  int rheight = calcheight(root->right);
+
+//   return max(lheight , rheight + 1 );
+ 
+//  }
+ 
+
+//   int calcdiameter(node* root){
+
+//       if(root==NULL){
+//           return 0 ;
+//       }             
+
+//       int lheight = calcheight(root->left);
+//       int rheight = calcheight(root->right);
+
+//     int  currdiameter = lheight + rheight + 1;
+
+//       int ldiameter = calcdiameter(root->left);
+//       int rdiameter = calcdiameter(root->right);
+
+//       return max(currdiameter  , max(ldiameter , rdiameter));
+//   }
+
+
+
+//  now we will se how can we improve our time complexity ------>>>>>>>>>>>>
+//  we will impllement this in o(n )----->>>>>>>> now ------->>>>>>>
+ 
+ int calcdiameter(node* root , int *height){
+
+     if(root==NULL){
+         *height =0;
+         return 0 ;
+     }
+     int lh = 0 , rh = 0 ;
+     
+     int ldiameter = calcdiameter(root->left , &lh);
+     int rdiameter = calcdiameter(root->right , &rh);
+
+    int currdiameter =lh  + rh+ 1;
+    
+    *height = max(lh , rh)+1;
+   
+    return max(currdiameter , max(ldiameter , rdiameter)); 
+
+ }
+ 
+ int main(){
+
+  node* root ;
+
+  root = new node(1);
+  root->left = new node(2);
+  root->right = new node(3); 
+  root->left->left = new node(4); 
+  root->left->right = new node(5); 
+  root->right->left = new node(6); 
+  root->right->right = new node(7); 
+
+   //  cout<<calcheight(root );  
+    int height = 0 ;
+   cout<<calcdiameter(root , &height);
+      
+
+ return 0;
+  }    
