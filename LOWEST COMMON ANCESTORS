@@ -1,0 +1,66 @@
+//   program to find the lowest common ancestors in a tree   ---->>>>>>>>>
+
+//  let's see the code ---------->>>>>>>>
+
+
+
+ #include"bits/stdc++.h"
+ using namespace std;
+
+ struct node{
+
+   int data ;
+   node* left;
+   node* right;
+
+   node(int x){
+   data = x ;
+   right = NULL;
+   left = NULL;
+
+   }
+
+ };
+ 
+ node* lowestcommonancestors(node* root , int n1 , int n2  ){
+      
+      if(root == NULL){
+          return NULL ; 
+      }
+
+      if(root->data == n1 ||  root->data == n2){
+          return root ;
+      }
+     node* llca = lowestcommonancestors(root->left , n1 ,  n2);
+     node* rlca = lowestcommonancestors(root->right , n1 , n2);
+
+     if(llca && rlca ){
+         return root;
+     }
+
+     if(llca){
+
+         return llca;
+     }
+     else{
+         return rlca ;
+     }
+ }
+
+ 
+ int main(){
+
+  node* root ;
+
+  root = new node(1);
+  root->left = new node(2);
+  root->right = new node(3); 
+  root->left->left = new node(4); 
+  root->left->right = new node(5); 
+  root->right->left = new node(6); 
+  root->right->right = new node(7); 
+
+  node* LCA = lowestcommonancestors(root , 4 , 7 );
+   cout<<LCA->data<<endl;
+ return 0;
+  }    
